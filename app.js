@@ -2,6 +2,7 @@
 const config = require('./config');
 const api = require('./lib/api');
 const CreateWallet = require('./lib/wallet');
+const Exchange = require('./lib/exchange');
 
 const dbConn = require('./database/conn');
 
@@ -24,7 +25,9 @@ dbConn.authenticate().then(() => {
     // start
     app.listen(config.server.port);
     const createWallet = new CreateWallet(config);
-    return createWallet.start();
+    const exchange = new Exchange(config);
+    createWallet.start();
+    exchange.start();
 }).catch((err) => {
     console.log(colors.red(err, 'reward'));
 });
