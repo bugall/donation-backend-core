@@ -10,13 +10,21 @@ module.exports = (conn) => conn.define('tb_pay', ({
         type: Sequelize.STRING,
         allowNull: false
     },
-    address: {
+    active_key: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
+    },
+    owner_key: {
+        type: Sequelize.STRING,
+        allowNull: true
     },
     total: {
-        type: Sequelize.NUMBER,
-        allowNull: false
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    account_id: {
+        type: Sequelize.STRING,
+        allowNull: true
     },
     channel: {
         type: Sequelize.STRING,

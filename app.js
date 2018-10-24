@@ -1,14 +1,16 @@
 'use strict';
 const config = require('./config');
-const api = require('./lib/api')
+const api = require('./lib/api');
+const CreateWallet = require('./lib/wallet');
 
 const dbConn = require('./database/conn');
+const createWallet = new CreateWallet(config);
 
 // pre-start, check service state
 dbConn.authenticate().then(() => {
     console.log('Wallet Service Start');
     // start
-    // return reward.start();
+    return createWallet.start();
 }).catch((err) => {
     console.log(err, 'reward');
 });
